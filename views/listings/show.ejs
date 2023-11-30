@@ -1,5 +1,19 @@
+
+
+
+
 <% layout("/layouts/boilerplate") -%>
 <!-- <body> -->
+
+  <script>
+console.log("Executing show.ejs script");
+    const mapToken = "<%= process.env.MAP_TOKEN %>";
+    const listing = "<%- JSON.stringify( listing) %>";
+   
+
+  </script>
+
+
 <div class="row">
   <div class="col-8 offset-3">
     <h3><%=listing.title%></h3>
@@ -61,6 +75,8 @@
       <div class="mb-3 mt-3">
          <label for="rating" class="form-label">Rating</label>
       <fieldset class="starability-slot">
+       
+        
         <input
           type="radio"
           id="rating"
@@ -99,58 +115,40 @@
     <hr />
     <% } %>
 
-    <% if(listing.reviews.length>0){ %>
-      <div class="row">
-        <p><b>All Reviews</b></p>
-        <% for(review of listing.reviews) { %>
-          <div class="card col-5 mb-3 ms-3">
-            <div class="card-body">
-              <h5 class="card-title">@<%=review.author.username%></h5>
-              <p class="starability-result card-text" data-rating="<%= review.rating%>"></p>
-              <p class="card-text"><%= review.comment%></p>
-            </div>
-            <form
-              class="mb-3"
-              method="POST"
-              action="/listings/<%= listing._id %>/reviews/<%= review._id%>?_method=DELETE"
-            >
-              <button class="btn btn-sm btn-dark mt-3">Delete</button>
-            </form>
-          </div>
-        <% } %>
-      </div>
-    <% } %>
-  </div>
+ <%if(listing.reviews.length>0){ %>
+    
+    <div class="row">
+      <p><b>All Reviews</b></p>
+      <% for(review of listing.reviews) { %>
 
-  <div class="col-8 offset-3 mb-3">
+      <div class="card col-5 mb-3 ms-3">
+        <div class="card-body">
+          <h5 class="card-title">@<%=review.author.username%></h5>
+          <p class="starability-result card-text" data-rating="<%= review.rating%>"></p>
+          <p class="card-text"><%= review.comment%></p>
+         
+          
+        </div>
+        <form
+          class="mb-3"
+          method="POST"
+          action="/listings/<%= listing._id %>/reviews/<%= review._id%>?_method=DELETE"
+        >
+          <button class="btn btn-sm btn-dark mt-3">Delete</button>
+        </form>
+      </div>
+      <% } %>
+    </div>
+    <%}%>
+  </div>
+    
+
+  </div>
+  <div class="col-8 offset-3 mb-3" >
      <h3> Where you'll be!</h3>
       <div id="map"></div>
-  </div>
+    </div>
 </div>
 
 <!-- </body> -->
-<script>
-  console.log("Executing show.ejs script");
-  const mapToken = "<%= process.env.MAP_TOKEN %>";
-  const listing = <%- JSON.stringify(listing) %>;
-
-  mapboxgl.accessToken = mapToken;
-
-  const map = new mapboxgl.Map({
-    container: "map", // container ID
-    style: "mapbox://styles/mapbox/streets-v12", // style URL
-    center: listing.geometry.coordinates, // starting position [lng, lat]
-    zoom: 9, // starting zoom
-  });
-
-  const marker = new mapboxgl.Marker({ color: "red" })
-    .setLngLat(listing.geometry.coordinates)
-    .setPopup(
-      new mapboxgl.Popup({ offset: 25 }).setHTML(
-        `<h5>${listing.location}</h5> <p>Exact location will be provided after booking</p>`
-      )
-    )
-    .addTo(map);
-</script>
-
-
+<script src="/js/map.js"></script>
