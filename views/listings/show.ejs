@@ -1,6 +1,6 @@
 <% layout("/layouts/boilerplate") -%>
 <!-- <body> -->
-console.log("Executing show.ejs  before script tag...");
+
   <script>
 console.log("Executing show.ejs script");
     const mapToken = "<%= process.env.MAP_TOKEN %>";
@@ -9,7 +9,7 @@ console.log("Executing show.ejs script");
 
   </script>
 
-console.log("Executing show.ejs  after script tag...");
+
 <div class="row">
   <div class="col-8 offset-3">
     <h3><%=listing.title%></h3>
