@@ -1,7 +1,7 @@
-console.log("verification point before mapToken.......map.js");
+
 mapboxgl.accessToken = mapToken;
-// mapboxgl.accessToken = "pk.eyJ1IjoidnNwMTAxMCIsImEiOiJjbHBsNTZka3gwMHZzMmpvdHNzZXN5OHYzIn0.8U0BUpkkrUV95kki9mwfsg";
-console.log("verification point after mapToken.......map.js");
+
+
 
 const map = new mapboxgl.Map({
   container: "map", // container ID
@@ -16,7 +16,7 @@ const marker = new mapboxgl.Marker({ color: "red" })
   .setLngLat(listing.geometry.coordinates) // listing .geometry.coordinates
   .setPopup(
     new mapboxgl.Popup({ offset: 25 }).setHTML(
-      `<h5>${listing.location}</h5> <p>Exact location</h5> will be provided after booking</p>`
+      `<h5>${listing.title}</h5> <p>Exact location</h5> will be provided after booking</p>`
     )
   )
 
