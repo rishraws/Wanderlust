@@ -18,6 +18,11 @@
     padding: 0.5rem 3rem 0.5rem 3rem;
     font-size: 1rem;
   }
+.addListing-btn {
+    border-radius: 25px;
+
+    border: 2px solid red;
+  }
 </style>
 
 
@@ -53,7 +58,7 @@
       </div>
 
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+        <a class="nav-link addListing-btn" href="/listings/new">Airbnb your home</a>
         <% if(!currUser) { %>
         <a class="nav-link" href="/signup"><b>Sign up</b></a>
         <a class="nav-link" href="/login"><b>Log-in</b></a>
