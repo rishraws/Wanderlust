@@ -6,7 +6,7 @@ mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
   container: "map", // container ID
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-  style: "mapbox://styles/mapbox/dark-v10", // style URL
+  style: "mapbox://styles/mapbox/navigation-night-v1", // style URL
   center: listing.geometry.coordinates, // starting position [lng, lat]
   zoom: 9, // starting zoom
 });
